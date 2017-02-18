@@ -3,6 +3,9 @@ package com.foodypark.foodypark.restaurant;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 /**
@@ -11,8 +14,12 @@ import java.util.ArrayList;
 
 public class MenuInfo implements Parcelable{
 
+    @SerializedName("Menu_Name")
+    @Expose
     String menuinfo;
-    ArrayList<MenuItems> items = new ArrayList<MenuItems>();
+    @SerializedName("Items")
+    @Expose
+    ArrayList<MenuItems> items = new ArrayList<>();
 
     public MenuInfo(String menuinfo, ArrayList<MenuItems> items) {
         this.menuinfo = menuinfo;

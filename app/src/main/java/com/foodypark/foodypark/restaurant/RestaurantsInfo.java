@@ -13,6 +13,9 @@ import java.util.ArrayList;
  */
 
 public class RestaurantsInfo implements Parcelable {
+    @SerializedName("location_name")
+    @Expose
+    private String locationName;
     @SerializedName("r_time")
     @Expose
     private String time;
@@ -35,7 +38,7 @@ public class RestaurantsInfo implements Parcelable {
     @Expose
     private ArrayList<MenuItemsImage> imageItems = new ArrayList<>();
 
-    public RestaurantsInfo(String time, String name, String loc, String imageID,String date, ArrayList<MenuInfo> info, ArrayList<MenuItemsImage> imageItems) {
+    public RestaurantsInfo(String locationName,String time, String name, String loc, String imageID,String date, ArrayList<MenuInfo> info, ArrayList<MenuItemsImage> imageItems) {
         this.time = time;
         this.name = name;
         this.loc = loc;
@@ -43,6 +46,7 @@ public class RestaurantsInfo implements Parcelable {
         this.date = date;
         this.info = info;
         this.imageItems = imageItems;
+        this.locationName = locationName;
     }
 
     protected RestaurantsInfo(Parcel in) {
@@ -51,6 +55,7 @@ public class RestaurantsInfo implements Parcelable {
         loc = in.readString();
         imageID = in.readString();
         date = in.readString();
+        locationName = in.readString();
         info = in.createTypedArrayList(MenuInfo.CREATOR);
         imageItems = in.createTypedArrayList(MenuItemsImage.CREATOR);
     }
@@ -128,6 +133,14 @@ public class RestaurantsInfo implements Parcelable {
         this.imageItems = imageItems;
     }
 
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(time);
@@ -136,6 +149,7 @@ public class RestaurantsInfo implements Parcelable {
         dest.writeString(imageID);
         dest.writeString(date);
         dest.writeTypedList(info);
+        dest.writeString(locationName);
         dest.writeTypedList(imageItems);
     }
 }

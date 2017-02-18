@@ -6,6 +6,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+
 import com.foodypark.foodypark.adapter.GlobalAdapter;
 import com.foodypark.foodypark.restaurant.MenuInfo;
 import com.foodypark.foodypark.restaurant.MenuItems;
@@ -56,22 +58,23 @@ public class MainActivity extends AppCompatActivity {
             a.add("Menu 4");
             ArrayList<MenuInfo> info = new ArrayList<>();
             ArrayList<MenuItemsImage> imageItems = new ArrayList<>();
-            imageItems.add(new MenuItemsImage("Item1",100,url));
-            imageItems.add(new MenuItemsImage("Item2",200,url));
-            imageItems.add(new MenuItemsImage("Item3",300,url));
-            imageItems.add(new MenuItemsImage("Item4",400,url));
+            imageItems.add(new MenuItemsImage("Item1",100,url,true));
+            imageItems.add(new MenuItemsImage("Item2",200,url,true));
+            imageItems.add(new MenuItemsImage("Item3",300,url,true));
+            imageItems.add(new MenuItemsImage("Item4",400,url,true));
             for (String x : a) {
                 ArrayList<MenuItems> items = new ArrayList<>();
-
-                items.add(new MenuItems("Item1", 100));
-                items.add(new MenuItems("Item2", 200));
-                items.add(new MenuItems("Item3", 300));
-                items.add(new MenuItems("Item4", 400));
-                items.add(new MenuItems("Item5", 500));
+                items.add(new MenuItems("Item1", 100,true));
+                items.add(new MenuItems("Item2", 200,true));
+                items.add(new MenuItems("Item3", 300,true));
+                items.add(new MenuItems("Item4", 400,true));
+                items.add(new MenuItems("Item5", 500,true));
                 info.add(new MenuInfo(x, items));
             }
-            data.add(new RestaurantsInfo("30 min","Restaurant "+i,"Location "+i,"https://s3.ap-south-1.amazonaws.com/foodypark/restaurant.png","18-2-2017",info,imageItems));
+            Log.d("**/*/",info.get(2).getMenuinfo());
+            data.add(new RestaurantsInfo("Jorhat","30 min","Restaurant "+i,"Location "+i,"https://s3.ap-south-1.amazonaws.com/foodypark/restaurant.png","18-2-2017",info,imageItems));
         }
+        //Log.d("**/*/",d)
         return data;
     }
 }

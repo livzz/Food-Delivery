@@ -3,25 +3,39 @@ package com.foodypark.foodypark.restaurant;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by ALiBH on 2/17/2017.
  */
 
 public class MenuItemsImage implements Parcelable{
+    @SerializedName("Name_i")
+    @Expose
     String item;
+    @SerializedName("Price_i")
+    @Expose
     int price;
+    @SerializedName("imageURL")
+    @Expose
     String itemImage;
+    @SerializedName("Availability_i")
+    @Expose
+    boolean availability;
 
-    public MenuItemsImage(String item, int price, String itemImage) {
+    public MenuItemsImage(String item, int price, String itemImage,Boolean availability) {
         this.item = item;
         this.price = price;
         this.itemImage = itemImage;
+        this.availability = availability;
     }
 
     protected MenuItemsImage(Parcel in) {
         item = in.readString();
         price = in.readInt();
         itemImage = in.readString();
+        availability = in.readByte() != 0;
     }
 
     public static final Creator<MenuItemsImage> CREATOR = new Creator<MenuItemsImage>() {
@@ -35,6 +49,14 @@ public class MenuItemsImage implements Parcelable{
             return new MenuItemsImage[size];
         }
     };
+
+    public boolean getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
+    }
 
     public String getItem() {
         return item;
@@ -70,5 +92,6 @@ public class MenuItemsImage implements Parcelable{
         dest.writeString(item);
         dest.writeInt(price);
         dest.writeString(itemImage);
+        dest.writeByte((byte) (availability ? 1 : 0));
     }
 }

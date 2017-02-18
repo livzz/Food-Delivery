@@ -25,7 +25,7 @@ public class Restaurant_Items extends AppCompatActivity {
     Toolbar tb;
     private static ViewPager viewPager;
     private static TabLayout tabLayout;
-    public RestaurantsInfo restaurant;
+    public RestaurantsInfo restaurant = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +33,7 @@ public class Restaurant_Items extends AppCompatActivity {
         tb = (Toolbar) findViewById(R.id.restaurant_toolbar);
         Intent intent = getIntent();
         restaurant = intent.getParcelableExtra("NAME");
-
+        Log.d("/*/*/*/",restaurant.getInfo().get(0).getMenuinfo());
         setUpToolbar(restaurant.getName());
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         setupViewPager(viewPager);
